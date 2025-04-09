@@ -49,7 +49,7 @@ appendix.
 ## Installing
 
 ```bash
-quarto add cl-roberts/.lua-filters/code-appendix
+quarto add cl-roberts/code-appendix
 ```
 
 This will install the extension under the `_extensions` subdirectory.
