@@ -14,7 +14,7 @@ presented to both technical and non-technical readers, or a blog post which focu
 on the analysis itself (i.e., not a tutorial).
 
 The traditional way to control the location of code chunks in the rendered/knit 
-`.qmd`/`.rmd` document is to use `ref.label` (when using `knitr` engine). 
+`.qmd`/`.rmd` document is to use `ref-label` (when using `knitr` engine). 
 For example [#6650](https://github.com/quarto-dev/quarto-cli/discussions/6650#discussioncomment-6861503).
 This filter represents a simpler but less flexible tool to achieve the same goal. 
 
@@ -24,7 +24,7 @@ When enabled, this filter stops the rendering of code chunks throughout the main
 body of the document and instead prints them altogether in an appendix at the 
 end. The behavior of the filter can be controlled using the following YAML options:
 
-- `code-appendix-title: str`. A string giving the code appendix title. Defaults to "Code".
+- `code-appendix-title: str`. A string giving the code appendix title. Defaults to "Code Appendix".
 - `code-appendix-header-level: int`. An integer giving the code appendix header 
   level. Defaults to 1. 
 - `code-appendix-file: str`. A string giving a path pointing to an external file 
@@ -68,5 +68,63 @@ filters:
 
 ## Example
 
-Here is the source code for a minimal example: [example.qmd](example.qmd).
+<details>
+
+<summary>Here is a minimal example generating a code appendix using <code>ref-label</code></summary>
+
+````qmd
+---
+echo: false
+---
+
+# Example
+
+The code chunk generating the following output
+
+```{r}
+#| label: r-code
+
+print("some r code")
+```
+
+gets moved to an appendix at the end of the document.
+
+# Code Appendix:
+
+```{r}
+#| echo: true
+#| eval: false
+#| ref-label: r-code
+```
+````
+
+</details>
+
+<details>
+
+<summary>Here is the same minimal example using <code>code-appendix</code></summary>
+
+````qmd
+---
+filters:
+  - code-appendix
+echo: true
+---
+
+# Example
+
+The code chunk generating the following output
+
+```{r}
+print("some r code")
+```
+
+gets moved to an appendix at the end of the document.
+````
+
+</details>
+
+<br>
+
+A more detailed example is [example.qmd](example.qmd).
 

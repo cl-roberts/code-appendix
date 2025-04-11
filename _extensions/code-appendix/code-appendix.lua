@@ -21,7 +21,7 @@ function Meta(m)
   if m["code-appendix-title"] ~= nil then
     codeAppendixTitle = pandoc.utils.stringify(m["code-appendix-title"])
   else
-    codeAppendixTitle = pandoc.Str("Code")
+    codeAppendixTitle = pandoc.Str("Code Appendix")
   end
 
   if m["code-appendix-header-level"] ~= nil then
